@@ -8,11 +8,11 @@ from homeassistant.components.sensor import (
     SensorStateClass,
 )
 from homeassistant.const import (
-    ELECTRIC_CURRENT_AMPERE,
-    ELECTRIC_POTENTIAL_VOLT,
-    ENERGY_KILO_WATT_HOUR,
+    UnitOfElectricCurrent,
+    UnitOfElectricPotential,
+    UnitOfEnergy,
     PERCENTAGE,
-    POWER_WATT,
+    UnitOfPower,
     SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
     UnitOfTemperature,
 )
@@ -47,14 +47,14 @@ DEVICE_CLASSES = {
 
 UNITS = {
     "battery": PERCENTAGE,
-    "battery_voltage": ELECTRIC_POTENTIAL_VOLT,
-    "current": ELECTRIC_CURRENT_AMPERE,
+    "battery_voltage": UnitOfElectricPotential.VOLT,
+    "current": UnitOfElectricCurrent.AMPERE,
     "humidity": PERCENTAGE,
     "outdoor_temp": UnitOfTemperature.CELSIUS,
-    "power": POWER_WATT,
+    "power": UnitOfPower.WATT,
     "rssi": SIGNAL_STRENGTH_DECIBELS_MILLIWATT,
     "temperature": UnitOfTemperature.CELSIUS,
-    "voltage": ELECTRIC_POTENTIAL_VOLT,
+    "voltage": UnitOfElectricPotential.VOLT,
 }
 
 
@@ -175,7 +175,7 @@ class XEnergySensor(XEntity, SensorEntity):
 
     _attr_device_class = SensorDeviceClass.ENERGY
     _attr_entity_registry_enabled_default = False
-    _attr_native_unit_of_measurement = ENERGY_KILO_WATT_HOUR
+    _attr_native_unit_of_measurement = UnitOfEnergy.KILO_WATT_HOUR
     _attr_state_class = SensorStateClass.TOTAL_INCREASING
     _attr_should_poll = True
 
@@ -257,7 +257,7 @@ class XEnergySensorPOWR3(XEnergySensor, SensorEntity):
 
 class XEnergyTotal(XSensor):
     _attr_device_class = SensorDeviceClass.ENERGY
-    _attr_native_unit_of_measurement = ENERGY_KILO_WATT_HOUR
+    _attr_native_unit_of_measurement = UnitOfEnergy.KILO_WATT_HOUR
     _attr_state_class = SensorStateClass.TOTAL
 
 
